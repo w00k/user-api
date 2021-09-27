@@ -143,8 +143,7 @@ public class UserServiceImpl implements UserService {
 			logger.info(user.get().toString());
 			logger.info(userDto.toString());
 			
-			if (user.get().isActive() == true && userDto.isActive() == true 
-					&& user.get().getToken().equalsIgnoreCase(userDto.getToken()) == true) {
+			if (user.get().getToken().equalsIgnoreCase(userDto.getToken()) == true) {
 				
 				userRepository.updateUser(userDto.getName(), userDto.getEmail(), userDto.getPassword(), userDto.isActive(), new Date(), Long.parseLong(userDto.getId()), userDto.getToken());
 				
@@ -161,7 +160,7 @@ public class UserServiceImpl implements UserService {
 				response.setLastLogin(user.get().getLastLogin());
 				response.setId(user.get().getId());
 				response.setToken(user.get().getToken());
-				response.setActive(user.get().isActive());
+				response.setActive(userDto.isActive());
 				response.setCreateDate(user.get().getCreateDate());
 				response.setUpdateDate(new Date());
 				
